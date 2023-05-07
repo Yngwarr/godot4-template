@@ -6,9 +6,9 @@
 * Change scenes on button press.
 * Quit game on button press.
 * Options menu (popup):
-    * Sound settings (volume).
     * Key mappings.
     * Restore defaults.
+    * Saving options to persistent storage.
 
 ### Pause menu
 
