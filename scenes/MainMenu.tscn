@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbplqxkaqi83r"]
+
+[ext_resource type="Script" path="res://src/ShowPopupButton.gd" id="1_uvylj"]
+[ext_resource type="PackedScene" uid="uid://dp02anwflcyv8" path="res://scenes/OptionsWindow.tscn" id="2_eahdg"]
+[ext_resource type="AudioStream" uid="uid://b2w6q0xx1b6fx" path="res://sfx/bass.wav" id="3_0mbej"]
+[ext_resource type="AudioStream" uid="uid://cd2hwotdnkao1" path="res://sfx/drum.wav" id="4_fxaul"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8bkd4"]
+font_size = 52
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="Menu" type="CanvasLayer" parent="."]
+
+[node name="Header" type="Label" parent="Menu"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 175.0
+grow_horizontal = 2
+text = "Epic Megagame"
+label_settings = SubResource("LabelSettings_8bkd4")
+horizontal_alignment = 1
+
+[node name="Menu" type="VBoxContainer" parent="Menu"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -324.0
+offset_right = 300.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Start" type="Button" parent="Menu/Menu"]
+layout_mode = 2
+text = "Start"
+
+[node name="Options" type="Button" parent="Menu/Menu" node_paths=PackedStringArray("popup")]
+layout_mode = 2
+text = "Options"
+script = ExtResource("1_uvylj")
+popup = NodePath("../../../OptionsWindow")
+
+[node name="Credits" type="Button" parent="Menu/Menu"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Quit" type="Button" parent="Menu/Menu"]
+layout_mode = 2
+text = "Quit"
+
+[node name="OptionsWindow" parent="." instance=ExtResource("2_eahdg")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Bass" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0mbej")
+autoplay = true
+bus = &"Music"
+
+[node name="Drum" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fxaul")
+autoplay = true
+bus = &"SFX"

@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp02anwflcyv8"]
+
+[ext_resource type="Script" path="res://src/OptionsWindow.gd" id="1_08yxq"]
+
+[node name="OptionsWindow" type="PopupPanel" node_paths=PackedStringArray("container")]
+title = "Options"
+position = Vector2i(490, 135)
+size = Vector2i(193, 124)
+visible = true
+borderless = false
+script = ExtResource("1_08yxq")
+container = NodePath("SoundLevels/Container")
+
+[node name="SoundLevels" type="VBoxContainer" parent="."]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 189.0
+offset_bottom = 120.0
+
+[node name="Header" type="Label" parent="SoundLevels"]
+layout_mode = 2
+text = "Sound Levels"
+horizontal_alignment = 1
+
+[node name="Container" type="GridContainer" parent="SoundLevels"]
+layout_mode = 2
+columns = 2
