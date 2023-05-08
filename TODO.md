@@ -9,10 +9,7 @@
 
 ### Pause menu
 
-* Resume game.
-* Options.
-* Quit to main menu.
-    * Confirmation dialogue.
+* Background blur.
 
 ### Game over screen
 
