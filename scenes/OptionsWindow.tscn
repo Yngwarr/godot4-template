@@ -8,6 +8,7 @@ position = Vector2i(490, 135)
 size = Vector2i(193, 124)
 visible = true
 borderless = false
+content_scale_mode = 1
 script = ExtResource("1_08yxq")
 container = NodePath("SoundLevels/Container")
 

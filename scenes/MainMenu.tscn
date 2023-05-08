@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbplqxkaqi83r"]
+[gd_scene load_steps=9 format=3 uid="uid://cbplqxkaqi83r"]
 
+[ext_resource type="Script" path="res://src/ChangeSceneButton.gd" id="1_fngra"]
 [ext_resource type="Script" path="res://src/ShowPopupButton.gd" id="1_uvylj"]
+[ext_resource type="Script" path="res://src/QuitButton.gd" id="2_ddegl"]
 [ext_resource type="PackedScene" uid="uid://dp02anwflcyv8" path="res://scenes/OptionsWindow.tscn" id="2_eahdg"]
+[ext_resource type="PackedScene" uid="uid://csahdmph2aji4" path="res://scenes/Game.tscn" id="2_vxehb"]
 [ext_resource type="AudioStream" uid="uid://b2w6q0xx1b6fx" path="res://sfx/bass.wav" id="3_0mbej"]
 [ext_resource type="AudioStream" uid="uid://cd2hwotdnkao1" path="res://sfx/drum.wav" id="4_fxaul"]
 
@@ -38,6 +41,8 @@ grow_vertical = 0
 [node name="Start" type="Button" parent="Menu/Menu"]
 layout_mode = 2
 text = "Start"
+script = ExtResource("1_fngra")
+next_scene = ExtResource("2_vxehb")
 
 [node name="Options" type="Button" parent="Menu/Menu" node_paths=PackedStringArray("popup")]
 layout_mode = 2
@@ -45,25 +50,56 @@ text = "Options"
 script = ExtResource("1_uvylj")
 popup = NodePath("../../../OptionsWindow")
 
-[node name="Credits" type="Button" parent="Menu/Menu"]
+[node name="Credits" type="Button" parent="Menu/Menu" node_paths=PackedStringArray("popup")]
 layout_mode = 2
 text = "Credits"
+script = ExtResource("1_uvylj")
+popup = NodePath("../../../CreditsWindow")
 
 [node name="Quit" type="Button" parent="Menu/Menu"]
 layout_mode = 2
 text = "Quit"
+script = ExtResource("2_ddegl")
 
 [node name="OptionsWindow" parent="." instance=ExtResource("2_eahdg")]
+position = Vector2i(490, 250)
+visible = false
+
+[node name="CreditsWindow" type="PopupPanel" parent="."]
+title = "Credits"
+position = Vector2i(405, 184)
+size = Vector2i(365, 325)
+borderless = false
+content_scale_mode = 1
+
+[node name="CreditsLabel" type="RichTextLabel" parent="CreditsWindow"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 361.0
+offset_bottom = 321.0
+bbcode_enabled = true
+text = "[center][b]Epic Megagame[/b][/center]
+
+Brought to you by:
+[ul]
+[b]Yngvarr[/b] - code and game design.
+[b]Syudzius[/b] - art and also game design.
+[/ul]
+
+With use of these 3rd party assets:
+[ul]
+[b]White square[/b] by squaresausage [i](via [url=https://hardweird.net]his personal site[/url])[/i].
+[/ul]
+
+Special thanks to all my homies!"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
 [node name="Bass" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0mbej")
-autoplay = true
 bus = &"Music"
 
 [node name="Drum" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_fxaul")
-autoplay = true
 bus = &"SFX"
