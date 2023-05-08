@@ -1,3 +1,76 @@
-[gd_scene format=3 uid="uid://csahdmph2aji4"]
+[gd_scene load_steps=7 format=3 uid="uid://csahdmph2aji4"]
 
-[node name="Game" type="Node2D"]
+[ext_resource type="Script" path="res://src/ShowPopupButton.gd" id="1_qvxf2"]
+[ext_resource type="Script" path="res://src/Game.gd" id="1_wmfvw"]
+[ext_resource type="Script" path="res://src/PauseMenu.gd" id="2_b6yyp"]
+[ext_resource type="PackedScene" uid="uid://dp02anwflcyv8" path="res://scenes/OptionsWindow.tscn" id="3_j5m3f"]
+[ext_resource type="Script" path="res://src/ChangeSceneButton.gd" id="4_mtdqs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sgf64"]
+font_size = 52
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("pause_screen")]
+script = ExtResource("1_wmfvw")
+pause_screen = NodePath("PauseMenu")
+
+[node name="PauseMenu" type="CanvasLayer" parent="." node_paths=PackedStringArray("resume_button", "options_menu")]
+process_mode = 2
+visible = false
+script = ExtResource("2_b6yyp")
+resume_button = NodePath("Menu/Resume")
+options_menu = NodePath("OptionsWindow")
+
+[node name="Header" type="Label" parent="PauseMenu"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 100.0
+offset_bottom = 175.0
+grow_horizontal = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_sgf64")
+horizontal_alignment = 1
+
+[node name="Menu" type="VBoxContainer" parent="PauseMenu"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -324.0
+offset_right = 300.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Resume" type="Button" parent="PauseMenu/Menu"]
+layout_mode = 2
+text = "Resume"
+
+[node name="Options" type="Button" parent="PauseMenu/Menu" node_paths=PackedStringArray("popup")]
+layout_mode = 2
+text = "Options"
+script = ExtResource("1_qvxf2")
+popup = NodePath("../../OptionsWindow")
+
+[node name="QuitToMenu" type="Button" parent="PauseMenu/Menu" node_paths=PackedStringArray("confirm_dialog")]
+layout_mode = 2
+text = "Quit to menu"
+script = ExtResource("4_mtdqs")
+next_scene_name = "res://scenes/MainMenu.tscn"
+confirm_dialog = NodePath("../../ConfirmQuit")
+
+[node name="OptionsWindow" parent="PauseMenu" instance=ExtResource("3_j5m3f")]
+position = Vector2i(490, 250)
+visible = false
+
+[node name="ConfirmQuit" type="ConfirmationDialog" parent="PauseMenu"]
+title = ""
+position = Vector2i(426, 284)
+size = Vector2i(289, 105)
+unresizable = true
+popup_window = true
+ok_button_text = "Yes"
+dialog_text = "Do you want to quit to main menu?"
+dialog_autowrap = true
+cancel_button_text = "No"

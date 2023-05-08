@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbplqxkaqi83r"]
+[gd_scene load_steps=9 format=3 uid="uid://cbplqxkaqi83r"]
 
 [ext_resource type="Script" path="res://src/ChangeSceneButton.gd" id="1_fngra"]
 [ext_resource type="Script" path="res://src/MainMenu.gd" id="1_tjqpj"]
 [ext_resource type="Script" path="res://src/ShowPopupButton.gd" id="1_uvylj"]
 [ext_resource type="Script" path="res://src/QuitButton.gd" id="2_ddegl"]
 [ext_resource type="PackedScene" uid="uid://dp02anwflcyv8" path="res://scenes/OptionsWindow.tscn" id="2_eahdg"]
-[ext_resource type="PackedScene" uid="uid://csahdmph2aji4" path="res://scenes/Game.tscn" id="2_vxehb"]
 [ext_resource type="AudioStream" uid="uid://b2w6q0xx1b6fx" path="res://sfx/bass.wav" id="3_0mbej"]
 [ext_resource type="AudioStream" uid="uid://cd2hwotdnkao1" path="res://sfx/drum.wav" id="4_fxaul"]
 
@@ -45,7 +44,7 @@ grow_vertical = 0
 layout_mode = 2
 text = "Start"
 script = ExtResource("1_fngra")
-next_scene = ExtResource("2_vxehb")
+next_scene_name = "res://scenes/Game.tscn"
 
 [node name="Options" type="Button" parent="Menu/Menu" node_paths=PackedStringArray("popup")]
 layout_mode = 2
