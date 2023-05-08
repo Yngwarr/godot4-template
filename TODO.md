@@ -2,10 +2,7 @@
 
 ### Main menu
 
-* Automatically set focus on buttons.
-* Change scenes on button press.
-* Quit game on button press.
-* Options menu (popup):
+* Options menu:
     * Key mappings.
     * Restore defaults.
     * Saving options to persistent storage.
