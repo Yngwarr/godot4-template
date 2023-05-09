@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cbplqxkaqi83r"]
+[gd_scene load_steps=7 format=3 uid="uid://cbplqxkaqi83r"]
 
 [ext_resource type="Script" path="res://src/ChangeSceneButton.gd" id="1_fngra"]
 [ext_resource type="Script" path="res://src/MainMenu.gd" id="1_tjqpj"]
 [ext_resource type="Script" path="res://src/ShowPopupButton.gd" id="1_uvylj"]
 [ext_resource type="Script" path="res://src/QuitButton.gd" id="2_ddegl"]
 [ext_resource type="PackedScene" uid="uid://dp02anwflcyv8" path="res://scenes/OptionsWindow.tscn" id="2_eahdg"]
-[ext_resource type="AudioStream" uid="uid://b2w6q0xx1b6fx" path="res://sfx/bass.wav" id="3_0mbej"]
-[ext_resource type="AudioStream" uid="uid://cd2hwotdnkao1" path="res://sfx/drum.wav" id="4_fxaul"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8bkd4"]
 font_size = 52
@@ -97,11 +95,3 @@ Special thanks to all my homies!"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
-
-[node name="Bass" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_0mbej")
-bus = &"Music"
-
-[node name="Drum" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_fxaul")
-bus = &"SFX"
