@@ -183,10 +183,12 @@ cancel_button_text = "No"
 
 [node name="Bass" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lyifp")
+autoplay = true
 bus = &"Music"
 
 [node name="Drum" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3ipul")
+autoplay = true
 bus = &"SFX"
 
 [node name="Icon" type="Sprite2D" parent="."]
