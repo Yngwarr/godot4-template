@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dp02anwflcyv8"]
 
-[ext_resource type="Script" path="res://src/OptionsWindow.gd" id="1_08yxq"]
+[ext_resource type="Script" path="res://src/UI/OptionsWindow.gd" id="1_08yxq"]
 
 [node name="OptionsWindow" type="PopupPanel" node_paths=PackedStringArray("container")]
 title = "Options"

@@ -1,16 +1,16 @@
 [gd_scene load_steps=7 format=3 uid="uid://cbplqxkaqi83r"]
 
-[ext_resource type="Script" path="res://src/ChangeSceneButton.gd" id="1_fngra"]
-[ext_resource type="Script" path="res://src/MainMenu.gd" id="1_tjqpj"]
-[ext_resource type="Script" path="res://src/ShowPopupButton.gd" id="1_uvylj"]
-[ext_resource type="Script" path="res://src/QuitButton.gd" id="2_ddegl"]
+[ext_resource type="Script" path="res://src/UI/MainMenu.gd" id="1_62wd7"]
+[ext_resource type="Script" path="res://src/UI/ChangeSceneButton.gd" id="2_5fb6k"]
 [ext_resource type="PackedScene" uid="uid://dp02anwflcyv8" path="res://scenes/OptionsWindow.tscn" id="2_eahdg"]
+[ext_resource type="Script" path="res://src/UI/ShowPopupButton.gd" id="3_pto1d"]
+[ext_resource type="Script" path="res://src/UI/QuitButton.gd" id="4_kgmp6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8bkd4"]
 font_size = 52
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("first_to_focus")]
-script = ExtResource("1_tjqpj")
+script = ExtResource("1_62wd7")
 first_to_focus = NodePath("Menu/Menu/Start")
 
 [node name="Menu" type="CanvasLayer" parent="."]
@@ -41,25 +41,25 @@ grow_vertical = 0
 [node name="Start" type="Button" parent="Menu/Menu"]
 layout_mode = 2
 text = "Start"
-script = ExtResource("1_fngra")
+script = ExtResource("2_5fb6k")
 next_scene_name = "res://scenes/Game.tscn"
 
 [node name="Options" type="Button" parent="Menu/Menu" node_paths=PackedStringArray("popup")]
 layout_mode = 2
 text = "Options"
-script = ExtResource("1_uvylj")
+script = ExtResource("3_pto1d")
 popup = NodePath("../../../OptionsWindow")
 
 [node name="Credits" type="Button" parent="Menu/Menu" node_paths=PackedStringArray("popup")]
 layout_mode = 2
 text = "Credits"
-script = ExtResource("1_uvylj")
+script = ExtResource("3_pto1d")
 popup = NodePath("../../../CreditsWindow")
 
 [node name="Quit" type="Button" parent="Menu/Menu"]
 layout_mode = 2
 text = "Quit"
-script = ExtResource("2_ddegl")
+script = ExtResource("4_kgmp6")
 
 [node name="OptionsWindow" parent="." instance=ExtResource("2_eahdg")]
 position = Vector2i(490, 250)
