@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://csahdmph2aji4"]
+[gd_scene load_steps=16 format=3 uid="uid://csahdmph2aji4"]
 
 [ext_resource type="Script" path="res://src/Game.gd" id="1_wmfvw"]
 [ext_resource type="Script" path="res://src/UI/PauseMenu.gd" id="2_xdcds"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/UI/ChangeSceneButton.gd" id="6_2c0ui"]
 [ext_resource type="AudioStream" uid="uid://b2w6q0xx1b6fx" path="res://sfx/bass.wav" id="6_lyifp"]
 [ext_resource type="AudioStream" uid="uid://cd2hwotdnkao1" path="res://sfx/drum.wav" id="7_3ipul"]
+[ext_resource type="Script" path="res://src/Pause.gd" id="8_cpxey"]
 [ext_resource type="Texture2D" uid="uid://bmetb0g61y3bv" path="res://icon.svg" id="8_lyls7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v63bu"]
@@ -104,9 +105,10 @@ _data = {
 "loop": SubResource("Animation_nmfpk")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("pause_screen")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("pause_ctl", "pause_menu")]
 script = ExtResource("1_wmfvw")
-pause_screen = NodePath("PauseMenu")
+pause_ctl = NodePath("Pause")
+pause_menu = NodePath("PauseMenu")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -167,12 +169,11 @@ next_scene_name = "res://scenes/MainMenu.tscn"
 confirm_dialog = NodePath("../../ConfirmQuit")
 
 [node name="OptionsWindow" parent="PauseMenu" instance=ExtResource("3_j5m3f")]
-position = Vector2i(490, 250)
 visible = false
 
 [node name="ConfirmQuit" type="ConfirmationDialog" parent="PauseMenu"]
 title = ""
-position = Vector2i(426, 284)
+initial_position = 2
 size = Vector2i(289, 105)
 unresizable = true
 popup_window = true
@@ -180,6 +181,11 @@ ok_button_text = "Yes"
 dialog_text = "Do you want to quit to main menu?"
 dialog_autowrap = true
 cancel_button_text = "No"
+
+[node name="Pause" type="Node" parent="." node_paths=PackedStringArray("pause_screen")]
+process_mode = 3
+script = ExtResource("8_cpxey")
+pause_screen = NodePath("../PauseMenu")
 
 [node name="Bass" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lyifp")

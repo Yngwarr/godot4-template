@@ -62,12 +62,11 @@ text = "Quit"
 script = ExtResource("4_kgmp6")
 
 [node name="OptionsWindow" parent="." instance=ExtResource("2_eahdg")]
-position = Vector2i(490, 250)
 visible = false
 
 [node name="CreditsWindow" type="PopupPanel" parent="."]
 title = "Credits"
-position = Vector2i(405, 184)
+initial_position = 2
 size = Vector2i(365, 325)
 borderless = false
 content_scale_mode = 1

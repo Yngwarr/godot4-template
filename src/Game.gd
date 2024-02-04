@@ -4,15 +4,11 @@ extends Node2D
 ## where your dreams come true! Adjust to your likings and may the code be with
 ## you.
 
-## Must have [code]process_mode == PROCESS_MODE_WHEN_PAUSED[/code].
-@export var pause_screen: CanvasLayer
+@export var pause_ctl: Pause
+@export var pause_menu: PauseMenu
 
 func _ready() -> void:
+	pause_menu.modal_open.connect(pause_ctl.drop_next)
+	pause_menu.resume_pressed.connect(pause_ctl.unpause)
+
 	$AnimationPlayer.play("loop")
-
-func _process(_delta) -> void:
-	if Input.is_action_just_pressed("game_pause"):
-		if not get_tree().paused:
-			get_tree().paused = true
-			pause_screen.pause()
-
