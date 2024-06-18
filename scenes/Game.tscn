@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://csahdmph2aji4"]
+[gd_scene load_steps=18 format=3 uid="uid://csahdmph2aji4"]
 
 [ext_resource type="Script" path="res://src/Game.gd" id="1_wmfvw"]
 [ext_resource type="Script" path="res://src/UI/PauseMenu.gd" id="2_xdcds"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cd2hwotdnkao1" path="res://sfx/drum.wav" id="7_3ipul"]
 [ext_resource type="Script" path="res://src/Pause.gd" id="8_cpxey"]
 [ext_resource type="Texture2D" uid="uid://bmetb0g61y3bv" path="res://icon.svg" id="8_lyls7"]
+[ext_resource type="Script" path="res://src/GameOverScreen.gd" id="8_yj5hy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v63bu"]
 shader = ExtResource("3_tg1ur")
@@ -19,6 +20,9 @@ shader_parameter/size = 10.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_sgf64"]
 font_size = 52
+
+[sub_resource type="LabelSettings" id="LabelSettings_syoim"]
+font_size = 28
 
 [sub_resource type="Animation" id="Animation_s7kd2"]
 length = 0.001
@@ -116,7 +120,7 @@ pause_menu = NodePath("PauseMenu")
 process_mode = 2
 visible = false
 script = ExtResource("2_xdcds")
-resume_button = NodePath("Menu/Resume")
+resume_button = NodePath("Container/MenuMargin/Menu/Resume")
 options_menu = NodePath("OptionsWindow")
 
 [node name="BackgroundBlur" type="TextureRect" parent="PauseMenu"]
@@ -128,45 +132,50 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_lyls7")
 
-[node name="Header" type="Label" parent="PauseMenu"]
-anchors_preset = 10
+[node name="Container" type="VBoxContainer" parent="PauseMenu"]
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 100.0
-offset_bottom = 175.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleMargin" type="MarginContainer" parent="PauseMenu/Container"]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="Title" type="Label" parent="PauseMenu/Container/TitleMargin"]
+layout_mode = 2
 text = "Paused"
 label_settings = SubResource("LabelSettings_sgf64")
 horizontal_alignment = 1
 
-[node name="Menu" type="VBoxContainer" parent="PauseMenu"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -324.0
-offset_right = 300.0
-offset_bottom = -100.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="MenuMargin" type="MarginContainer" parent="PauseMenu/Container"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
 
-[node name="Resume" type="Button" parent="PauseMenu/Menu"]
+[node name="Menu" type="VBoxContainer" parent="PauseMenu/Container/MenuMargin"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Resume" type="Button" parent="PauseMenu/Container/MenuMargin/Menu"]
 layout_mode = 2
 text = "Resume"
 
-[node name="Options" type="Button" parent="PauseMenu/Menu" node_paths=PackedStringArray("popup")]
+[node name="Options" type="Button" parent="PauseMenu/Container/MenuMargin/Menu" node_paths=PackedStringArray("popup")]
 layout_mode = 2
 text = "Options"
 script = ExtResource("5_k0seo")
-popup = NodePath("../../OptionsWindow")
+popup = NodePath("../../../../OptionsWindow")
 
-[node name="QuitToMenu" type="Button" parent="PauseMenu/Menu" node_paths=PackedStringArray("confirm_dialog")]
+[node name="QuitToMenu" type="Button" parent="PauseMenu/Container/MenuMargin/Menu" node_paths=PackedStringArray("confirm_dialog")]
 layout_mode = 2
 text = "Quit to menu"
 script = ExtResource("6_2c0ui")
 next_scene_name = "res://scenes/MainMenu.tscn"
-confirm_dialog = NodePath("../../ConfirmQuit")
+confirm_dialog = NodePath("../../../../ConfirmQuit")
 
 [node name="OptionsWindow" parent="PauseMenu" instance=ExtResource("3_j5m3f")]
 visible = false
@@ -181,6 +190,64 @@ ok_button_text = "Yes"
 dialog_text = "Do you want to quit to main menu?"
 dialog_autowrap = true
 cancel_button_text = "No"
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("8_yj5hy")
+
+[node name="BackgroundBlur" type="TextureRect" parent="GameOverScreen"]
+material = SubResource("ShaderMaterial_v63bu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_lyls7")
+
+[node name="Container" type="VBoxContainer" parent="GameOverScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleMargin" type="MarginContainer" parent="GameOverScreen/Container"]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="Title" type="Label" parent="GameOverScreen/Container/TitleMargin"]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_sgf64")
+horizontal_alignment = 1
+
+[node name="FlavorText" type="Label" parent="GameOverScreen/Container"]
+layout_mode = 2
+text = "You won! Or lost. I didn't pay attention..."
+label_settings = SubResource("LabelSettings_syoim")
+horizontal_alignment = 1
+
+[node name="MenuMargin" type="MarginContainer" parent="GameOverScreen/Container"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 150
+
+[node name="Menu" type="VBoxContainer" parent="GameOverScreen/Container/MenuMargin"]
+layout_mode = 2
+
+[node name="TryAgain" type="Button" parent="GameOverScreen/Container/MenuMargin/Menu"]
+layout_mode = 2
+text = "Try Again"
+script = ExtResource("6_2c0ui")
+next_scene_name = "res://scenes/Game.tscn"
+
+[node name="QuitToMenu" type="Button" parent="GameOverScreen/Container/MenuMargin/Menu"]
+layout_mode = 2
+text = "Quit to menu"
+script = ExtResource("6_2c0ui")
+next_scene_name = "res://scenes/MainMenu.tscn"
 
 [node name="Pause" type="Node" parent="." node_paths=PackedStringArray("pause_screen")]
 process_mode = 3

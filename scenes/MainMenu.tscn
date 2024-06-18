@@ -11,52 +11,56 @@ font_size = 52
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("first_to_focus")]
 script = ExtResource("1_62wd7")
-first_to_focus = NodePath("Menu/Menu/Start")
+first_to_focus = NodePath("Menu/Container/MenuMargin/Menu/Start")
 
 [node name="Menu" type="CanvasLayer" parent="."]
 
-[node name="Header" type="Label" parent="Menu"]
-anchors_preset = 10
+[node name="Container" type="VBoxContainer" parent="Menu"]
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 100.0
-offset_bottom = 175.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleMargin" type="MarginContainer" parent="Menu/Container"]
+layout_mode = 2
+theme_override_constants/margin_top = 100
+
+[node name="Title" type="Label" parent="Menu/Container/TitleMargin"]
+layout_mode = 2
 text = "Epic Megagame"
 label_settings = SubResource("LabelSettings_8bkd4")
 horizontal_alignment = 1
 
-[node name="Menu" type="VBoxContainer" parent="Menu"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -300.0
-offset_top = -324.0
-offset_right = 300.0
-offset_bottom = -100.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="MenuMargin" type="MarginContainer" parent="Menu/Container"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
 
-[node name="Start" type="Button" parent="Menu/Menu"]
+[node name="Menu" type="VBoxContainer" parent="Menu/Container/MenuMargin"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="Menu/Container/MenuMargin/Menu"]
 layout_mode = 2
 text = "Start"
 script = ExtResource("2_5fb6k")
 next_scene_name = "res://scenes/Game.tscn"
 
-[node name="Options" type="Button" parent="Menu/Menu" node_paths=PackedStringArray("popup")]
+[node name="Options" type="Button" parent="Menu/Container/MenuMargin/Menu" node_paths=PackedStringArray("popup")]
 layout_mode = 2
 text = "Options"
 script = ExtResource("3_pto1d")
-popup = NodePath("../../../OptionsWindow")
+popup = NodePath("../../../../../OptionsWindow")
 
-[node name="Credits" type="Button" parent="Menu/Menu" node_paths=PackedStringArray("popup")]
+[node name="Credits" type="Button" parent="Menu/Container/MenuMargin/Menu" node_paths=PackedStringArray("popup")]
 layout_mode = 2
 text = "Credits"
 script = ExtResource("3_pto1d")
-popup = NodePath("../../../CreditsWindow")
+popup = NodePath("../../../../../CreditsWindow")
 
-[node name="Quit" type="Button" parent="Menu/Menu"]
+[node name="Quit" type="Button" parent="Menu/Container/MenuMargin/Menu"]
 layout_mode = 2
 text = "Quit"
 script = ExtResource("4_kgmp6")
