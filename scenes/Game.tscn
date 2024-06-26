@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://csahdmph2aji4"]
+[gd_scene load_steps=17 format=3 uid="uid://csahdmph2aji4"]
 
 [ext_resource type="Script" path="res://src/Game.gd" id="1_wmfvw"]
 [ext_resource type="Script" path="res://src/UI/PauseMenu.gd" id="2_xdcds"]
@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://cd2hwotdnkao1" path="res://sfx/drum.wav" id="7_3ipul"]
 [ext_resource type="Script" path="res://src/Pause.gd" id="8_cpxey"]
 [ext_resource type="Texture2D" uid="uid://bmetb0g61y3bv" path="res://icon.svg" id="8_lyls7"]
-[ext_resource type="Script" path="res://src/GameOverScreen.gd" id="8_yj5hy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v63bu"]
 shader = ExtResource("3_tg1ur")
@@ -193,7 +192,6 @@ cancel_button_text = "No"
 
 [node name="GameOverScreen" type="CanvasLayer" parent="."]
 visible = false
-script = ExtResource("8_yj5hy")
 
 [node name="BackgroundBlur" type="TextureRect" parent="GameOverScreen"]
 material = SubResource("ShaderMaterial_v63bu")
