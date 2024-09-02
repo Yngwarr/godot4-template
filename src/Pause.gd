@@ -10,7 +10,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("game_pause"):
 
 		if get_tree().paused:
-			unpause()
+			unpause(false)
 		else:
 			pause()
 
@@ -19,8 +19,8 @@ func pause() -> void:
 	get_tree().paused = true
 	pause_screen.pause()
 
-func unpause() -> void:
-	if to_drop_next:
+func unpause(ignore_drop := true) -> void:
+	if to_drop_next and not ignore_drop:
 		to_drop_next = false
 		return
 
