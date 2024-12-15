@@ -1,3 +1,4 @@
+@tool
 extends PopupPanel
 
 ## Spawn this window wherever and whenever you want to change your game options.
@@ -8,9 +9,11 @@ extends PopupPanel
 var sliders: Array[VolumeSlider] = []
 
 func _ready() -> void:
-	visibility_changed.connect(on_toggle)
-	for bus in SoundCtl.adjustable_sound_buses():
-		sliders.append(add_bus_ctl(bus))
+	if not Engine.is_editor_hint():
+		visibility_changed.connect(on_toggle)
+
+	for bus_idx in SoundCtl.adjustable_sound_buses():
+		sliders.append(add_bus_ctl(bus_idx))
 
 func on_toggle() -> void:
 	if not visible:

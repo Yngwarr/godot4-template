@@ -23,5 +23,5 @@ func _ready() -> void:
 func set_volume(volume: float) -> void:
 	SoundCtl.set_volume(bus, volume)
 
-func update_value():
+func update_value() -> void:
 	value = AudioServer.get_bus_volume_db(bus)
